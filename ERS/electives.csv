@@ -1,0 +1,37 @@
+Name,ID,Elective,Department,Course Code,Course Rating,Year
+Student_9239,53090,Production Technology,Petroleum Engineering,C9652,4.6,4
+Student_9355,93441,Construction Planning,Civil Engineering,C5227,4.0,3
+Student_7209,50939,Digital Signal Processing,Electronics & Communication Engineering,C8514,2.2,2
+Student_7151,24715,Communication Systems,Electronics & Communication Engineering,C5004,4.3,2
+Student_8733,12782,Wireless Communication,Electronics & Communication Engineering,C6889,4.7,1
+Student_7663,30786,Communication Systems,Electronics & Communication Engineering,C3652,1.4,3
+Student_4883,83305,Data Structures,Computer Science & Engineering,C3469,3.4,2
+Student_8099,17480,Communication Systems,Electronics & Communication Engineering,C7198,3.6,4
+Student_7766,50382,Petroleum Geology,Petroleum Engineering,C4885,2.1,3
+Student_6981,42308,Manufacturing Processes,Mechanical Engineering,C2612,1.6,4
+Student_4912,88794,Big Data,Computer Science & Engineering,C8367,2.4,3
+Student_2312,29107,Artificial Intelligence,Computer Science & Engineering,C7009,4.8,2
+Student_7700,26200,Urban Planning,Civil Engineering,C8449,1.2,3
+Student_8676,76243,Well Testing,Petroleum Engineering,C5245,1.9,2
+Student_7066,34577,Machine Learning,Computer Science & Engineering,C6775,1.1,2
+Student_7911,95146,Environmental Engineering,Civil Engineering,C2733,1.6,4
+Student_9048,44076,Big Data,Computer Science & Engineering,C1953,4.9,4
+Student_2911,54974,Hydrology,Civil Engineering,C7983,2.1,1
+Student_7719,43236,Embedded Systems,Electronics & Communication Engineering,C5615,4.4,3
+Student_3318,83350,Heat Transfer,Mechanical Engineering,C7082,1.4,4
+Student_2603,83285,Wireless Communication,Electronics & Communication Engineering,C8579,3.2,2
+Student_9511,22619,Operating Systems,Computer Science & Engineering,C5673,3.4,2
+Student_6456,97535,Wireless Communication,Electronics & Communication Engineering,C5736,3.3,2
+Student_8682,29158,Construction Planning,Civil Engineering,C7570,2.4,1
+Student_1305,64331,Petroleum Refining,Petroleum Engineering,C5773,1.7,3
+Student_4213,59843,Data Structures,Computer Science & Engineering,C2770,3.3,3
+Student_8506,21186,Drilling Engineering,Petroleum Engineering,C7431,2.2,1
+Student_4936,16827,Microprocessors,Electrical & Electronics Engineering,C8593,4.5,3
+Student_5268,24433,Database Management Systems,Computer Science & Engineering,C8833,1.6,4
+Student_7765,22939,Electric Machines,Electrical & Electronics Engineering,C9990,3.0,4
+Student_8312,42973,Microelectronics,Electronics & Communication Engineering,C9161,1.3,2
+Student_5081,57894,Automobile Engineering,Mechanical Engineering,C4903,3.4,1
+Student_9960,59789,Machine Design,Mechanical Engineering,C4561,2.4,1
+Student_3247,87677,Manufacturing Processes,Mechanical Engineering,C3266,2.5,3
+Student_6819,73743,Operating Systems,Computer Science & Engineering,C8816,4.2,4
+

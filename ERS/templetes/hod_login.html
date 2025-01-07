@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f1f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #5C6BC0, #3f4a8e);
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 50px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        /* Animation for container */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 36px;
+            font-family: 'Ubuntu', sans-serif;
+            letter-spacing: 2px;
+            color: #5C6BC0;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="email"], input[type="password"] {
+            background-color: #f4f4f4;
+        }
+
+        /* Hover effect for inputs */
+        input:focus {
+            border-color: #5C6BC0;
+            outline: none;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background-color: #5C6BC0;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #3f4a8e;
+            transform: translateY(-2px);
+        }
+
+        .login-error {
+            color: red;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 40px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            input, button {
+                padding: 12px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>HOD Login</h1>
+        <form method="POST" action="/hod_login">
+            <input type="email" name="email" placeholder="Enter HOD Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+            {% if error %}
+                <div class="login-error">{{ error }}</div>
+            {% endif %}
+        </form>
+    </div>
+
+</body>
+</html>

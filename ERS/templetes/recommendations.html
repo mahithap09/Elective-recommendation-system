@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective Recommendations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .select-button {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .select-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Top 5 Recommended Electives for {{ name }}</h1>
+    <p><strong>Student ID:</strong> {{ student_id }}</p>
+    <hr>
+
+    {% if recommendations %}
+        <h2>Here are the top 5 electives based on your prompt:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Elective Name</th>
+                    <th>Department</th>
+                    <th>Course Code</th>
+                    <th>Year</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for elective in recommendations %}
+                    <tr>
+                        <td>{{ elective['Elective'] }}</td>
+                        <td>{{ elective['Department'] }}</td>
+                        <td>{{ elective['Course Code'] }}</td>
+                        <td>{{ year }}</td>
+                        <td>
+                            <form action="/select_elective" method="POST">
+                                <input type="hidden" name="student_id" value="{{ student_id }}">
+                                <input type="hidden" name="student_name" value="{{ name }}">
+                                <input type="hidden" name="department" value="{{ department }}">
+                                <input type="hidden" name="elective_name" value="{{ elective['Elective'] }}"> 
+                                <input type="hidden" name="course_code" value="{{ elective['Course Code'] }}"> 
+                                <input type="hidden" name="year" value="{{ year }}"> 
+                                <button class="select-button" type="submit">Select</button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    {% else %}
+        <p>No electives found based on your criteria.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            overflow-x: hidden;
+        }
+
+        
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 36px;
+            font-family: 'Ubuntu', sans-serif;
+            color: #5C6BC0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        
+        .hod-login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #5C6BC0;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hod-login-btn:hover {
+            background-color: #3f4a8e;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            color: blue;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        
+        input, select, button {
+            width: 100%;
+            padding: 16px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        input[type="text"], input[type="number"], select {
+            background-color: #fafafa;
+        }
+
+        button {
+            background-color: #5C6BC0;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3f4a8e;
+            transform: translateY(-2px);
+        }
+
+        
+        input:focus, select:focus {
+            border-color: #5C6BC0;
+            box-shadow: 0 0 10px rgba(92, 107, 192, 0.3);
+        }
+
+        
+        .login-error {
+            color: red;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin: 20px;
+            }
+
+            .logo {
+                font-size: 28px;
+            }
+
+            .hod-login-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 24px;
+                left: 10px;
+            }
+
+            .hod-login-btn {
+                font-size: 14px;
+                padding: 8px 18px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            input, select, button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        Presidency
+    </div>
+
+    <a href="{{ url_for('hod_login') }}" class="hod-login-btn" target="_blank">
+        HOD Login
+    </a>
+    
+
+    <div class="container">
+        <h1>Presidency University</h1>
+        <h1>Elective Course Recommendation</h1>
+        <form method="POST">
+            <input type="text" name="student_id" placeholder="Student ID" required>
+            <input type="text" name="name" placeholder="Student Name" required>
+            <select name="department" required>
+                <option value="" disabled selected>Please choose your department</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</option>
+                <option value="Electronics & Communication Engineering">Electronics & Communication Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Petroleum Engineering">Petroleum Engineering</option>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+            </select>            
+            <input type="number" name="year" placeholder="Year (1-4)" min="1" max="4" required>
+            <input type="text" name="prompt" placeholder="Please enter valid elective Prompt" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

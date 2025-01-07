@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap 4 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #5C6BC0, #3f4a8e);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 95%;
+            margin: 40px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #5C6BC0;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-container button {
+            margin: 10px;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-container button:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        table th, table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        th.sortable:hover {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+        .table-container {
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .btn-container button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .search-bar {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HOD Dashboard</h1>
+
+        
+        <div class="btn-container">
+            <button class="btn btn-primary" onclick="showTable('studentsTable')">All Registered Students</button>
+            <button class="btn btn-success" onclick="showTable('electiveCountTable')">Elective Counts</button>
+            <button class="btn btn-info" onclick="showTable('departmentCountTable')">Department Counts</button>
+            <button class="btn btn-warning" onclick="showTable('yearCountTable')">Year-wise Counts</button>
+        </div>
+
+        
+        <div id="studentsTable" class="table-container fade-in">
+            <h3>All Registered Students</h3>
+            <input type="text" id="studentsSearch" class="form-control search-bar" placeholder="Search by Student ID, Name, Elective, Department, or Year">
+            <table class="table table-bordered" id="studentsTableContent">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="sortable">Student ID</th>
+                        <th class="sortable">Student Name</th>
+                        <th class="sortable">Elective</th>
+                        <th class="sortable">Department</th>
+                        <th class="sortable">Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in all_electives %}
+                    <tr>
+                        <td>{{ student[0] }}</td> <!-- Student ID -->
+                        <td>{{ student[1] }}</td> <!-- Student Name -->
+                        <td>{{ student[2] }}</td> <!-- Elective Name -->
+                        <td>{{ student[3] }}</td> <!-- Department -->
+                        <td>{{ student[4] }}</td> <!-- Year -->
+                    </tr>
+                    {% endfor %}
+                </tbody>                
+            </table>
+        </div>
+
+        <!-- Elective Counts -->
+        <div id="electiveCountTable" class="table-container fade-in">
+            <h3>Elective Registration Counts</h3>
+            <input type="text" id="electiveCountSearch" class="form-control search-bar" placeholder="Search by Elective">
+            <table class="table table-bordered" id="electiveCountTableContent">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="sortable">Elective</th>
+                        <th class="sortable">Number of Students</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for elective, count in elective_counts %}
+                    <tr>
+                        <td>{{ elective }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+        <div id="departmentCountTable" class="table-container fade-in">
+            <h3>Department-wise Student Counts</h3>
+            <input type="text" id="departmentCountSearch" class="form-control search-bar" placeholder="Search by Department">
+            <table class="table table-bordered" id="departmentCountTableContent">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="sortable">Department</th>
+                        <th class="sortable">Number of Students</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for department, count in department_counts %}
+                    <tr>
+                        <td>{{ department }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        
+        <div id="yearCountTable" class="table-container fade-in">
+            <h3>Year-wise Student Counts</h3>
+            <input type="text" id="yearCountSearch" class="form-control search-bar" placeholder="Search by Year">
+            <table class="table table-bordered" id="yearCountTableContent">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="sortable">Year</th>
+                        <th class="sortable">Student Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for year, count in year_counts %}
+                    <tr>
+                        <td>{{ year }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+
+
+    <script>
+        function showTable(tableId) {
+            const allTables = ['studentsTable', 'electiveCountTable', 'departmentCountTable', 'yearCountTable'];
+            allTables.forEach(id => {
+                const tableDiv = document.getElementById(id);
+                if (id === tableId) {
+                    tableDiv.style.display = 'block';
+                } else {
+                    tableDiv.style.display = 'none';
+                }
+            });
+        }
+
+        
+        function searchTable(inputId, tableId) {
+            const input = document.getElementById(inputId);
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById(tableId);
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) { 
+                const cells = rows[i].getElementsByTagName('td');
+                let matchFound = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(filter)) {
+                        matchFound = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = matchFound ? '' : 'none';
+            }
+        }
+
+        
+        document.getElementById('studentsSearch').addEventListener('keyup', function() {
+            searchTable('studentsSearch', 'studentsTableContent');
+        });
+
+        document.getElementById('electiveCountSearch').addEventListener('keyup', function() {
+            searchTable('electiveCountSearch', 'electiveCountTableContent');
+        });
+
+        document.getElementById('departmentCountSearch').addEventListener('keyup', function() {
+            searchTable('departmentCountSearch', 'departmentCountTableContent');
+        });
+
+        document.getElementById('yearCountSearch').addEventListener('keyup', function() {
+            searchTable('yearCountSearch', 'yearCountTableContent');
+        });
+    </script>
+</body>
+</html>
